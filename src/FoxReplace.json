@@ -22,7 +22,13 @@
           "caseSensitive": false
         },
         {
-          "input": "(ERROR: .*)",
+          "input": "(.* failed with error code .*)",
+          "inputType": "regexp",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": false
+        },
+        {
+          "input": "(ERROR: .*\\|Traceback (most recent call last\\):)",
           "inputType": "regexp",
           "output": "<b style='color: red;'>$1</b>",
           "caseSensitive": true
@@ -42,7 +48,13 @@
         {
           "input": "(fatal: .*)",
           "inputType": "regexp",
-          "output": "",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": false
+        },
+        {
+          "input": "(\\[(DEPRECATION )?WARNING\\].*)",
+          "inputType": "regexp",
+          "output": "<b style='color: orange;'>$1</b>",
           "caseSensitive": false
         }
       ],
