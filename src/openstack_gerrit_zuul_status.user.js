@@ -20,6 +20,9 @@
 // @include  /^https?://review\.openstack\.org/(#/c/)?\d*?/?(\d*)?/?$/
 // @require  https://code.jquery.com/jquery-3.3.1.min.js
 // @require  https://review.openstack.org/static/hideci.js
+// @downloadURL https://github.com/mpeterson/openstack-greasemonkey-helpers/raw/master/src/openstack_gerrit_zuul_status.user.js
+// @updateURL https://github.com/mpeterson/openstack-greasemonkey-helpers/raw/master/src/openstack_gerrit_zuul_status.user.js
+// @supportURL https://github.com/mpeterson/openstack-greasemonkey-helpers/issues
 // ==/UserScript==
 
 // Config
