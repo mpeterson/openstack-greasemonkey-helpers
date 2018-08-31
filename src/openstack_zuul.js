@@ -17,14 +17,22 @@
 // @author   Sorin Sbarnea
 // @version  1
 // @grant    GM_addStyle
-// @include  https://zuul.openstack.org/*
-// @grant    GM_addStyle
-// @supportURL https://github.com/mpeterson/openstack-greasemonkey-helpers/issues
+// @include  http://zuul.openstack.org/*
+// @homepageURL https://github.com/mpeterson/openstack-greasemonkey-helpers/issues
+// @installURL https://raw.githubusercontent.com/ssbarnea/openstack-greasemonkey-helpers/master/src/openstack_zuul.js
+// @downloadURL https://raw.githubusercontent.com/ssbarnea/openstack-greasemonkey-helpers/master/src/openstack_zuul.js
 // ==/UserScript==
 
-GM_addStyle(`
-.zuul-patchset-header {
-    cursor: pointer;
-}
-`);
-
+function GM_addStyle(css) {
+    const style = document.getElementById("GM_addStyleBy8626") || (function() {
+      const style = document.createElement('style');
+      style.type = 'text/css';
+      style.id = "GM_addStyleBy8626";
+      document.head.appendChild(style);
+      return style;
+    })();
+    const sheet = style.sheet;
+    sheet.insertRule(css, (sheet.rules || sheet.cssRules || []).length);
+  }
+  
+  GM_addStyle(".zuul-patchset-header { cursor: pointer; }");
