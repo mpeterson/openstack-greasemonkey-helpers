@@ -11,8 +11,10 @@ use from multiple browsers.
 
 ## Installation
 
-After you install GreaseMonkey in your browser click the link below:
+After you install TamperMonkey/ViolentMonkey/GreaseMonkey in your browser
+click the links below to trigger script installation:
 * https://github.com/mpeterson/openstack-greasemonkey-helpers/raw/master/src/openstack_gerrit_zuul_status.user.js
+* https://github.com/mpeterson/openstack-greasemonkey-helpers/raw/master/src/openstack_zuul.user.js
 
 ## Ideas for future scripts
 

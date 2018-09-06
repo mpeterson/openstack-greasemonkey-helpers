@@ -19,8 +19,6 @@
 // @grant    GM_addStyle
 // @include  http://zuul.openstack.org/*
 // @homepageURL https://github.com/mpeterson/openstack-greasemonkey-helpers/issues
-// @installURL https://raw.githubusercontent.com/ssbarnea/openstack-greasemonkey-helpers/master/src/openstack_zuul.js
-// @downloadURL https://raw.githubusercontent.com/ssbarnea/openstack-greasemonkey-helpers/master/src/openstack_zuul.js
 // ==/UserScript==
 
 function GM_addStyle(css) {
