@@ -1,0 +1,21 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v1.3.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: check-byte-order-marker
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-vcs-permalinks
+      - id: check-json
+      - id: check-yaml
+        files: .*\.(yaml|yml)$
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: 'v5.5.0'  # Use the sha / tag you want to point at
+    hooks:
+      - id: eslint
+        entry: "eslint --format unix"
