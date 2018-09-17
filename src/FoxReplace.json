@@ -1,0 +1,66 @@
+{
+  "version": "2.1",
+  "groups": [
+    {
+      "name": "failed2",
+      "urls": [
+        "http://logs.openstack.org",
+        "http://logs.rdoproject.org",
+        "https://zuul.openstack.org"
+      ],
+      "substitutions": [
+        {
+          "input": "(failed=\\s?[^0].*)",
+          "inputType": "regexp",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": false
+        },
+        {
+          "input": "(\\*\\*\\* FAILED with status: .*)",
+          "inputType": "regexp",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": false
+        },
+        {
+          "input": "(.* failed with error code .*)",
+          "inputType": "regexp",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": false
+        },
+        {
+          "input": "(ERROR: .*\\|Traceback (most recent call last\\):)",
+          "inputType": "regexp",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": true
+        },
+        {
+          "input": "(Failed \\d+ tests - output below:)",
+          "inputType": "regexp",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": false
+        },
+        {
+          "input": "(RUN END RESULT_TIMED_OUT:)",
+          "inputType": "regexp",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": false
+        },
+        {
+          "input": "(fatal: .*)",
+          "inputType": "regexp",
+          "output": "<b style='color: red;'>$1</b>",
+          "caseSensitive": false
+        },
+        {
+          "input": "(\\[(DEPRECATION )?WARNING\\].*)",
+          "inputType": "regexp",
+          "output": "<b style='color: orange;'>$1</b>",
+          "caseSensitive": false
+        }
+      ],
+      "html": "output",
+      "enabled": true,
+      "mode": "auto&manual"
+    }
+  ]
+}
