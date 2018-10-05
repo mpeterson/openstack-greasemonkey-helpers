@@ -9,7 +9,11 @@
 
 // Config
 
-const zuul_status_base = "https://softwarefactory-project.io/zuul/api/tenant/rdoproject.org/";
+
+const zuul_url = "https://softwarefactory-project.io/zuul/";
+const zuul_tenant = "rdoproject.org"
+const zuul_console_url = zuul_url + "t/" + zuul_tenant + "/"
+const zuul_status_base = zuul_url + "api/tenant/" + zuul_tenant + "/";
 const zuul_status_url = zuul_status_base + "status/change/";
 
 // /Config
@@ -128,7 +132,7 @@ var main = function() {
             item.status = job.result ? job.result.toLowerCase() : (job.url ? 'running' : 'queued');
             item.name = job.name;
             item.pipeline = job.pipeline;
-            item.url = job.result ? job.report_url : (job.url ? zuul_status_base + job.url : "#");
+            item.url = job.result ? job.report_url : (job.url ? zuul_console_url + job.url : "#");
 
             if (item.status === 'running' && job.remaining_time !== null){
                 item.completeness = Math.round(100 * (job.elapsed_time / (job.elapsed_time + job.remaining_time))) + '%';
