@@ -14,7 +14,7 @@ const zuul_status_url = zuul_status_base + "status/change/";
 
 // /Config
 
-// Script start 
+// Script start
 
 $('style#gerrit_sitecss').append('.result_RUNNING { color: #1e9ced; }');
 
@@ -64,25 +64,25 @@ var latest_patchset = function(comments) {
 
 var render = function(jobs) {
   var location = $('table.test_result_table');
-  
+
   var table = '<tbody>' +
-      '<tr>' + 
+      '<tr>' +
       '<td class="header">Zuul check</td>' +
       '<td class="header ci_date result_WARNING">Still running</td>' +
       '</tr>';
-  
+
   $.each(jobs, function(i, job) {
       var status_with_completeness = ((job.status === 'running' && typeof job.completeness !== 'undefined') ? 'RUNNING (' + job.completeness + ')' : job.status.toUpperCase());
-  
+
       table += '<tr>' +
       '<td><a href="' + job.url + '" rel="nofollow">' + job.name + '</a></td>' +
       '<td><span class="comment_test_result"><span class="result_' + job.status.toUpperCase() +'">' + status_with_completeness + '</span></td>' +
       '</tr>';
   });
-  
+
   table += '</tbody>';
-  
-  location.html(table);    
+
+  location.html(table);
 };
 
 var main = function() {
@@ -95,49 +95,49 @@ var main = function() {
     if (typeof change_ver === 'undefined'){
         change_ver = latest_patchset(parse_comments());
     }
-    
+
     var status_url = zuul_status_url + change_id + ',' + change_ver;
-  
+
 
     $.getJSON(status_url, function(data) {
         var queue;
         var jobs = [];
-      
+
         if (data.length === 0){
           if ($('.result_WARNING').length > 0){
               location.reload();
           }
           return;
         }
-      
+
         for(i=0; i <= data.length; i++){
           queue = data[i];
           if (queue.items_behind.length == 0){
               break;
           }
-        }        
-        
+        }
+
         if (!queue){
             console.log("couldn't find a queue");
             return;
         }
-            
+
         $.each(queue.jobs, function(i, job) {
             var item = {};
-          
+
             item.status = job.result ? job.result.toLowerCase() : (job.url ? 'running' : 'queued');
             item.name = job.name;
             item.pipeline = job.pipeline;
             item.url = job.result ? job.report_url : (job.url ? zuul_status_base + job.url : "#");
-          
+
             if (item.status === 'running' && job.remaining_time !== null){
                 item.completeness = Math.round(100 * (job.elapsed_time / (job.elapsed_time + job.remaining_time))) + '%';
             }
-          
+
             jobs.push(item);
-            
+
         });
-        
+
         render(jobs);
         setTimeout(main, 2000);
     });
